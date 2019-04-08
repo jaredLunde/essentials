@@ -12,10 +12,7 @@ export const requestTimeout = (fn, delay) => {
   let start = now(), handle = {}
 
   const loop = () => {
-    const current = now()
-    const delta = current - start
-
-    delta >= delay
+    now() - start >= delay
       ? fn.call()
       : handle.value = raf(loop)
   }

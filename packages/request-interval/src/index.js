@@ -12,9 +12,7 @@ export const requestInterval = (fn, delay) => {
   let handle = {}
 
   const loop = () => {
-    const current = now()
-
-    if((current - start) >= delay) {
+    if(now() - start >= delay) {
       fn.call()
       start = now()
     }
