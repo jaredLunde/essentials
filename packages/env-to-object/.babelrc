@@ -1,7 +1,4 @@
 {
-  "presets": [
-    ["@stellar-apps/react", {"removePropTypes":  false}]
-  ],
   "env": {
     "cjs": {
       "presets": [
