@@ -1,10 +1,8 @@
-# @react-hook/[packageName]
-[description]
+# benchmark
 
 ## Installation
-`yarn add @react-hook/[packageName]`
+#### `npm i benchmark`
+#### `yarn add benchmark`
 
-## Usage
-```js
-import _ from '@react-hook/[packageName]'
-```
+## LICENSE
+MIT
