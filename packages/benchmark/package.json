@@ -1,6 +1,6 @@
 {
-  "name": "benchmark",
-  "version": "1.0.0",
+  "name": "@essentials/benchmark",
+  "version": "1.0.4",
   "author": "Jared Lunde <jared@BeStellar.co> (https://jaredLunde.com)",
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -24,7 +24,13 @@
     "pretty-quick": "^1.11.1",
     "rimraf": "^2.7.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "boxen": "^3.1.0",
+    "chalk": "^2.4.2",
+    "chalk-console": "^1.0.1",
+    "performance-now": "^2.1.0",
+    "pretty-ms": "^4.0.0"
+  },
   "peerDependencies": {},
   "scripts": {
     "build": "npm run build:cjs && npm run build:es",
@@ -49,12 +55,12 @@
       "pretty-quick --staged"
     ]
   },
-  "homepage": "https://github.com/jaredLunde/benchmark#readme",
+  "homepage": "https://github.com/jaredLunde/essentials/packages/tree/master/benchmark#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jaredLunde/benchmark.git"
+    "url": "https://github.com/jaredLunde/essentials/essentials.git"
   },
   "bugs": {
-    "url": "https://github.com/jaredLunde/benchmark/issues"
+    "url": "https://github.com/jaredLunde/essentials/issues"
   }
 }
