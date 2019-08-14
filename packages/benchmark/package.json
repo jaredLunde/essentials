@@ -55,7 +55,7 @@
       "pretty-quick --staged"
     ]
   },
-  "homepage": "https://github.com/jaredLunde/essentials/packages/tree/master/benchmark#readme",
+  "homepage": "https://github.com/jaredLunde/essentials/tree/master/packages/benchmark#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/jaredLunde/essentials/essentials.git"
