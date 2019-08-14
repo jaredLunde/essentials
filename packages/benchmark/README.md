@@ -1,8 +1,8 @@
-# benchmark
+# @essentials/benchmark
 
 ## Installation
-#### `npm i benchmark`
-#### `yarn add benchmark`
+#### `npm i @essentials/benchmark`
+#### `yarn add @essentials/benchmark`
 
 ## LICENSE
 MIT
