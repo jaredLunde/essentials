@@ -1,4 +1,5 @@
 # @essentials/compose
+A fast, tiny compose() function for JavaScript
 
 ## Installation
 #### `npm i @essentials/compose`

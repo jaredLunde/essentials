@@ -8,7 +8,7 @@
   "files": [
     "/dist"
   ],
-  "description": "A really fast, tiny compose() function for JavaScript",
+  "description": "A fast, tiny compose() function for JavaScript",
   "keywords": [
     "compose functions",
     "compose",
