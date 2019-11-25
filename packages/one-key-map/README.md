@@ -9,6 +9,9 @@
   <a href="https://bundlephobia.com/result?p=@essentials/one-key-map">
     <img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/@essentials/one-key-map?style=for-the-badge&labelColor=24292e">
   </a>
+  <a aria-label="Types" href="https://www.npmjs.com/package/@essentials/one-key-map">
+    <img alt="Types" src="https://img.shields.io/npm/types/@essentials/one-key-map?style=for-the-badge&labelColor=24292e">
+  </a>
   <a aria-label="NPM version" href="https://www.npmjs.com/package/@essentials/one-key-map">
     <img alt="NPM Version" src="https://img.shields.io/npm/v/@essentials/one-key-map?style=for-the-badge&labelColor=24292e">
   </a>
