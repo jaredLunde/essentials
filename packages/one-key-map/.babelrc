@@ -1,30 +1,28 @@
 {
-  "env": {
-    "cjs": {
-      "presets": [
-        [
-          "@stellar-apps/es",
-          {
-            "env": {
-              "useBuiltIns": false,
-              "targets": {"browsers": ">5% in US"}
-            },
-            "runtime": false
+  "presets": [
+    [
+      "@lunde/es",
+      {
+        "env": {
+          "targets": {
+            "node": "8"
           }
-        ]
-      ]
-    },
+        }
+      }
+    ]
+  ],
+  "env": {
     "es": {
       "presets": [
         [
-          "@stellar-apps/es",
+          "@lunde/es",
           {
             "env": {
-              "useBuiltIns": false,
               "modules": false,
-              "targets": {"browsers": ">5% in US"}
-            },
-            "runtime": false
+              "targets": {
+                "browsers": "> 2%"
+              }
+            }
           }
         ]
       ]
