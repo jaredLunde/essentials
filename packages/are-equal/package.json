@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@lunde/babel-preset-es": "latest",
-    "@types/jest": "latest",
+    "@types/jest": "^24.9.0",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "cross-env": "latest",

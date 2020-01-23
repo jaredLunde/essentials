@@ -12,10 +12,10 @@ export type AreEqual = (args: IArguments, pArgs: IArguments | any[]) => boolean
 export type InputFunction = (...args: any[]) => any
 export type MemoizedFunction = (...args: any[]) => any
 
-const memoOne = (
-  fn: InputFunction,
+const memoOne = <T extends InputFunction>(
+  fn: T,
   areEqual: AreEqual = defaultAreEqual
-): MemoizedFunction => {
+): T => {
   let args: IArguments | any[] = emptyArr,
     value: any
 
@@ -24,7 +24,7 @@ const memoOne = (
     args = arguments
     value = fn.apply(this, args)
     return value
-  }
+  } as T
 }
 
 export default memoOne

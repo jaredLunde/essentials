@@ -2,17 +2,18 @@ import memoizeOne from './index'
 
 describe('memoizeOne', () => {
   it('stores one value w/ default areEqual fn', () => {
-    const myFn = memoizeOne((): {} => ({
+    const myFn = memoizeOne((a, b, c, d): {} => ({
       foo: 'bar',
     }))
-
+    // @ts-ignore
     expect(myFn('a', 'b', 'c', 'd')).toBe(myFn('a', 'b', 'c', 'd', 'e'))
+    // @ts-ignore
     expect(myFn('a', 'b', 'c', 'd')).not.toBe(myFn('a', 'b', 'c'))
   })
 
   it('stores one value w/ custom areEqual fn', () => {
     const myFn = memoizeOne(
-      (): {} => ({
+      (a: string, b: string): {} => ({
         foo: 'bar',
       }),
       (args, pArgs): boolean => args[1] === pArgs[1]
