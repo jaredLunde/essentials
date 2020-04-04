@@ -7,6 +7,12 @@ describe('pending()', () => {
     expect(error).toBe(undefined)
   })
 
+  it('should resolve successfully w/ async funciton', async () => {
+    const [result, error] = await pending(async () => true)
+    expect(result).toBe(true)
+    expect(error).toBe(undefined)
+  })
+
   it('should reject gracefully', async () => {
     const [result, error] = await pending(() => Promise.reject(true))
     expect(result).toBe(undefined)
