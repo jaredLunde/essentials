@@ -32,7 +32,7 @@ The default `areEqual` function is a strict equality check on the first four arg
 import memoOne from '@essentials/memoize-one'
 
 const toUpper = memoOne(
-  value => value.toUpperCase(),
+  (value) => value.toUpperCase(),
   // are equal?
   (args, prevArgs) => args[0] === prevArgs[0]
 )

@@ -2,7 +2,7 @@ import memoizeOne from './index'
 
 describe('memoizeOne', () => {
   it('stores one value w/ default areEqual fn', () => {
-    const myFn = memoizeOne((a, b, c, d): {} => ({
+    const myFn = memoizeOne((a: string, b: string, c: string, d: string) => ({
       foo: 'bar',
     }))
     // @ts-ignore
@@ -13,7 +13,7 @@ describe('memoizeOne', () => {
 
   it('stores one value w/ custom areEqual fn', () => {
     const myFn = memoizeOne(
-      (a: string, b: string): {} => ({
+      (a: string, b: string) => ({
         foo: 'bar',
       }),
       (args, pArgs): boolean => args[1] === pArgs[1]

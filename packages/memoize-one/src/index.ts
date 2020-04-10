@@ -1,4 +1,3 @@
-const emptyArr: any[] = []
 const defaultAreEqual = (
   args: IArguments,
   pArgs: IArguments | any[]
@@ -12,15 +11,13 @@ export type AreEqual = (args: IArguments, pArgs: IArguments | any[]) => boolean
 export type InputFunction = (...args: any[]) => any
 export type MemoizedFunction = (...args: any[]) => any
 
-const memoOne = <T extends InputFunction>(
-  fn: T,
-  areEqual: AreEqual = defaultAreEqual
-): T => {
-  let args: IArguments | any[] = emptyArr,
+const memoOne = <T extends InputFunction>(fn: T, areEqual?: AreEqual): T => {
+  const equal = areEqual || defaultAreEqual
+  let args: IArguments | any[] = [],
     value: any
 
-  return function(): any {
-    if (areEqual(arguments, args) === true) return value
+  return function (): ReturnType<T> {
+    if (equal(arguments, args)) return value
     args = arguments
     value = fn.apply(this, args)
     return value
