@@ -12,7 +12,7 @@
     ]
   ],
   "env": {
-    "es": {
+    "module": {
       "presets": [
         [
           "@lunde/es",

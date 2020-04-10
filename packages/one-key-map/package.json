@@ -1,7 +1,7 @@
 {
   "name": "@essentials/one-key-map",
-  "version": "1.0.1",
-  "homepage": "https://github.com/jaredLunde/essentials#readme",
+  "version": "1.0.2",
+  "homepage": "https://github.com/jaredLunde/essentials/tree/master/packages/one-key-map#readme",
   "repository": "github:jaredLunde/essentials",
   "bugs": "https://github.com/jaredLunde/essentials/issues",
   "author": "Jared Lunde <jared@BeStellar.co> (https://jaredLunde.com)",
@@ -10,8 +10,8 @@
   "keywords": [
     "one key map"
   ],
-  "main": "dist/cjs/index.js",
-  "module": "dist/es/index.js",
+  "main": "dist/main/index.js",
+  "module": "dist/module/index.js",
   "types": "types/index.d.ts",
   "files": [
     "/dist",
@@ -19,10 +19,10 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "npm run build:cjs && npm run build:es && npm run build:types",
-    "build:cjs": "babel src -d dist/cjs -x .ts --ignore \"**/*.test.ts\",\"**/test.ts\" --delete-dir-on-start",
-    "build:es": "cross-env BABEL_ENV=es babel src -d dist/es -x .ts --ignore \"**/*.test.ts\",\"**/test.ts\" --delete-dir-on-start",
-    "build:types": "rimraf types && tsc -p tsconfig.json -d --outDir types",
+    "build": "npm run build-main && npm run build-es && npm run build-types",
+    "build-main": "babel src -d dist/main -x .ts --ignore \"**/*.test.ts\",\"**/test.ts\" --delete-dir-on-start",
+    "build-es": "babel src -d dist/module -x .ts --env-name=module --ignore \"**/*.test.ts\",\"**/test.ts\" --delete-dir-on-start",
+    "build-types": "rimraf types && tsc -p tsconfig.json -d --outDir types",
     "check-types": "tsc --noEmit -p tsconfig.json",
     "format": "prettier --write \"**/*.{ts,js,md,yml,json,babelrc,eslintrc,prettierrc}\"",
     "lint": "eslint . --ext .ts",
@@ -32,7 +32,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run build:types"
+      "pre-commit": "lint-staged && npm run build-types"
     }
   },
   "lint-staged": {
@@ -49,7 +49,6 @@
     "@types/jest": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
-    "cross-env": "latest",
     "eslint": "latest",
     "eslint-import-resolver-jest": "latest",
     "eslint-plugin-jest": "latest",
