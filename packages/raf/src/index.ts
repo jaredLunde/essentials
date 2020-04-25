@@ -1,14 +1,15 @@
 export type Raf = (callback: (timestamp: number) => void) => number
 export type Caf = (handle: number) => void
 
-let win = typeof window !== 'undefined' ? window : {},
-  p = typeof performance !== 'undefined' ? performance : Date,
+let u = 'undefined',
+  win = typeof window !== u ? window : {},
+  p = typeof performance !== u ? performance : Date,
   now = () => p.now(),
   af = 'AnimationFrame',
   Caf = 'cancel' + af,
   Raf = 'request' + af,
-  raf: Raf = win[Raf] !== void 0 && win[Raf].bind(win),
-  caf: Caf = win[Caf] !== void 0 && win[Caf].bind(win)
+  raf: Raf = win[Raf] && win[Raf].bind(win),
+  caf: Caf = win[Caf] && win[Caf].bind(win)
 
 if (!raf || !caf) {
   let lastTime = 0
