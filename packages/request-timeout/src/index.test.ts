@@ -1,6 +1,6 @@
 import requestTimeout, {clearRequestTimeout} from './index'
 // @ts-ignore
-import now from 'performance-now'
+import {now} from '@essentials/raf'
 
 expect.extend({
   toBeNear(actual, expected, wiggleRoom = 30) {

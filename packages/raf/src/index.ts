@@ -1,30 +1,20 @@
-let p = typeof performance !== 'undefined' ? performance : Date
-let raf: typeof window.requestAnimationFrame | undefined,
-  caf: typeof window.cancelAnimationFrame | undefined,
-  win = typeof window !== 'undefined' ? window : void 0
+export type Raf = (callback: (timestamp: number) => void) => number
+export type Caf = (handle: number) => void
 
-if (win) {
-  let af = 'AnimationFrame',
-    Raf = 'Request' + af
-  raf = win.requestAnimationFrame.bind(win)
-  caf = win.cancelAnimationFrame.bind(win)
-
-  if (!raf || !caf) {
-    // eslint-disable-next-line no-extra-semi
-    ;['webkit', 'moz', 'ms', 'o'].forEach((vp) => {
-      //@ts-ignore
-      raf = raf || win[vp + Raf]
-      //@ts-ignore
-      caf = caf || win[vp + 'Cancel' + af] || win[vp + 'Cancel' + Raf]
-    })
-  }
-}
+let win = typeof window !== 'undefined' ? window : {},
+  p = typeof performance !== 'undefined' ? performance : Date,
+  now = () => p.now(),
+  af = 'AnimationFrame',
+  Caf = 'cancel' + af,
+  Raf = 'request' + af,
+  raf: Raf = win[Raf] !== void 0 && win[Raf].bind(win),
+  caf: Caf = win[Caf] !== void 0 && win[Caf].bind(win)
 
 if (!raf || !caf) {
   let lastTime = 0
   raf = (callback: FrameRequestCallback) => {
-    let curr = p.now()
-    let next = Math.max(lastTime + 1000 / 60, curr)
+    let curr = now(),
+      next = Math.max(lastTime + 1000 / 60, curr)
     return setTimeout(() => {
       callback((lastTime = next))
     }, next - curr)
@@ -32,4 +22,4 @@ if (!raf || !caf) {
   caf = (h) => clearTimeout(h)
 }
 
-export {raf, caf}
+export {raf, caf, now}

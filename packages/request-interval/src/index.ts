@@ -1,8 +1,7 @@
-import raf, {cancel} from 'raf'
-import now from 'performance-now'
+import {raf, caf, now} from '@essentials/raf'
 
 export interface RequestIntervalHandle {
-  value?: number
+  v?: number
 }
 
 /**  Copyright 2011, Joe Lambert.
@@ -10,7 +9,7 @@ export interface RequestIntervalHandle {
  **  http://www.opensource.org/licenses/mit-license.php
  **/
 export const clearRequestInterval = (handle: RequestIntervalHandle): void => {
-  cancel(handle.value)
+  caf(handle.v || -1)
 }
 
 export const requestInterval = (
@@ -26,10 +25,10 @@ export const requestInterval = (
       start = now()
     }
 
-    handle.value = raf(loop)
+    handle.v = raf(loop)
   }
 
-  handle.value = raf(loop)
+  handle.v = raf(loop)
   return handle
 }
 

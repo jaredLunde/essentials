@@ -1,8 +1,7 @@
-import raf, {cancel} from 'raf'
-import now from 'performance-now'
+import {raf, caf, now} from '@essentials/raf'
 
 export interface RequestTimeoutHandle {
-  value?: number
+  v?: number
 }
 
 /**  Copyright 2011, Joe Lambert.
@@ -11,7 +10,7 @@ export interface RequestTimeoutHandle {
  **/
 
 export const clearRequestTimeout = (handle: RequestTimeoutHandle): void => {
-  cancel(handle.value)
+  caf(handle.v || -1)
 }
 
 export const requestTimeout = (
@@ -22,10 +21,10 @@ export const requestTimeout = (
     handle: RequestTimeoutHandle = {}
 
   const loop = () => {
-    now() - start >= delay ? fn.call(null) : (handle.value = raf(loop))
+    now() - start >= delay ? fn.call(null) : (handle.v = raf(loop))
   }
 
-  handle.value = raf(loop)
+  handle.v = raf(loop)
   return handle
 }
 
