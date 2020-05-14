@@ -17,7 +17,8 @@
     "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-use-before-define": "off",
-    "prefer-rest-params": "off"
+    "prefer-rest-params": "off",
+    "prefer-spread": "off"
   },
   "env": {
     "browser": true,

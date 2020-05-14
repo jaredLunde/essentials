@@ -1,10 +1,10 @@
 {
   "name": "@essentials/memoize-one",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "homepage": "https://github.com/jaredLunde/essentials#readme",
   "repository": "github:jaredLunde/essentials",
   "bugs": "https://github.com/jaredLunde/essentials/issues",
-  "author": "Jared Lunde <jared@BeStellar.co> (https://jaredLunde.com)",
+  "author": "Jared Lunde <jared.lunde@gmail.com> (https://jaredLunde.com)",
   "license": "MIT",
   "description": "A memoization algorithm that only caches the result of the latest set of arguments, where argument equality is determined via a provided equality function.",
   "keywords": [

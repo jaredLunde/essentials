@@ -1,27 +1,31 @@
-const defaultAreEqual = (
-  args: IArguments,
-  pArgs: IArguments | any[]
-): boolean =>
-  args[0] === pArgs[0] &&
-  args[1] === pArgs[1] &&
-  args[2] === pArgs[2] &&
-  args[3] === pArgs[3]
-
-export type AreEqual = (args: IArguments, pArgs: IArguments | any[]) => boolean
-export type InputFunction = (...args: any[]) => any
-export type MemoizedFunction = (...args: any[]) => any
-
-const memoOne = <T extends InputFunction>(fn: T, areEqual?: AreEqual): T => {
+const memoOne = <Args extends any[], T extends any>(
+  fn: (...args: Args) => T,
+  areEqual?: AreEqual<Args>
+): OutputFunction<Args, T> => {
   const equal = areEqual || defaultAreEqual
-  let args: IArguments | any[] = [],
-    value: any
+  let args: Args, value: any
 
-  return function (): ReturnType<T> {
-    if (equal(arguments, args)) return value
-    args = arguments
-    value = fn.apply(this, args)
-    return value
-  } as T
+  return function (): T {
+    return !!args && equal(arguments as any, args)
+      ? value
+      : (value = fn.apply(null, (args = arguments as any)))
+  } as OutputFunction<Args, T>
 }
 
 export default memoOne
+
+const defaultAreEqual = (
+  current: IArguments,
+  prev: IArguments | any[]
+): boolean =>
+  current[0] === prev[0] &&
+  current[1] === prev[1] &&
+  current[2] === prev[2] &&
+  current[3] === prev[3]
+
+export type AreEqual<Args> = (currentArgs: Args, prevArgs: Args) => boolean
+export type InputFunction = (...args: any[]) => any
+export type OutputFunction<Args extends any[], T extends any> = (
+  ...args: Args
+) => T
+export type MemoizedFunction = (...args: any[]) => any
