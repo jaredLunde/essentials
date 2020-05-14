@@ -28,4 +28,3 @@ export type InputFunction = (...args: any[]) => any
 export type OutputFunction<Args extends any[], T extends any> = (
   ...args: Args
 ) => T
-export type MemoizedFunction = (...args: any[]) => any
