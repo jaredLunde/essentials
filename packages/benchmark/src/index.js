@@ -56,7 +56,9 @@ const bench = (label, fn) => {
 
   let output = label,
     per = elapsed / iterations
-  output += `\n\n${chalk.bold(prettyOps(1000.0 / per))}op/s`
+  output += `\n\n${(chalk.bold ? chalk.bold : chalk.blue)(
+    prettyOps(1000.0 / per)
+  )}op/s`
   output += `\n${chalk.gray(prettyMs(per, {formatSubMs: per < 1}))}`
 
   if (typeof window === 'undefined') output = boxen(output, {padding: 2})

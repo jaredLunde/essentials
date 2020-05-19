@@ -1,6 +1,6 @@
 {
   "name": "@essentials/benchmark",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Jared Lunde <jared@BeStellar.co> (https://jaredLunde.com)",
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "boxen": "^3.1.0",
-    "chalk": "^2.4.2",
+    "chalk": "^4.0.0",
     "chalk-console": "^1.0.1",
     "performance-now": "^2.1.0",
     "pretty-ms": "^4.0.0"
