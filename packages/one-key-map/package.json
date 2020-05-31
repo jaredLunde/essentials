@@ -1,6 +1,6 @@
 {
   "name": "@essentials/one-key-map",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "homepage": "https://github.com/jaredLunde/essentials/tree/master/packages/one-key-map#readme",
   "repository": "github:jaredLunde/essentials",
   "bugs": "https://github.com/jaredLunde/essentials/issues",
@@ -12,16 +12,18 @@
   ],
   "main": "dist/main/index.js",
   "module": "dist/module/index.js",
+  "source": "src/index.ts",
   "types": "types/index.d.ts",
   "files": [
     "/dist",
+    "/src",
     "/types"
   ],
   "sideEffects": false,
   "scripts": {
     "build": "npm run build-main && npm run build-es && npm run build-types",
-    "build-main": "babel src -d dist/main -x .ts --ignore \"**/*.test.ts\",\"**/test.ts\" --delete-dir-on-start",
-    "build-es": "babel src -d dist/module -x .ts --env-name=module --ignore \"**/*.test.ts\",\"**/test.ts\" --delete-dir-on-start",
+    "build-main": "babel src -d dist/main -x .ts --ignore \"**/*.test.ts\",\"**/test.ts\" --delete-dir-on-start && sed -i '' -e 's/this\\.set = void 0/ /g' dist/main/index.js && sed -i '' -e 's/this\\.get = void 0/ /g' dist/main/index.js",
+    "build-es": "babel src -d dist/module -x .ts --env-name=module --ignore \"**/*.test.ts\",\"**/test.ts\" --delete-dir-on-start  && sed -i '' -e 's/this\\.set = void 0/ /g' dist/module/index.js && sed -i '' -e 's/this\\.get = void 0/ /g' dist/module/index.js",
     "build-types": "rimraf types && tsc -p tsconfig.json -d --outDir types",
     "check-types": "tsc --noEmit -p tsconfig.json",
     "format": "prettier --write \"**/*.{ts,js,md,yml,json,babelrc,eslintrc,prettierrc}\"",
@@ -56,7 +58,7 @@
     "jest": "latest",
     "lint-staged": "latest",
     "prettier": "latest",
-    "rimraf": "^2.6.3",
+    "rimraf": "^3.0.2",
     "ts-jest": "latest",
     "typescript": "latest"
   },
