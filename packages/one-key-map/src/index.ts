@@ -3,8 +3,7 @@ class OneKeyMap<K extends any = any, V extends any = any> {
   get: (k: K) => V | undefined
 
   constructor() {
-    let key: K | undefined = void 0
-    let val: V | undefined = void 0
+    let key: K | undefined, val: V | undefined
     this.get = (k: K): V | undefined => (k === key ? val : void 0)
     this.set = (k: K, v: V): void => {
       key = k
