@@ -23,7 +23,7 @@
 <pre align="center">npm i @essentials/are-equal</pre>
 <hr>
 
-Blazing fast strict equality functions
+Blazing fast strict equality algorithms
 
 ## Quick Start
 

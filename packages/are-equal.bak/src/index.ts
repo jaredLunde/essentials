@@ -1,7 +1,4 @@
-export const areEqualArrays = <A extends any[], B extends any[]>(
-  arrA: A,
-  arrB: B | A
-): boolean => {
+export const areEqualArrays = (arrA: any[], arrB: any[]): boolean => {
   if (arrA === arrB) return true
   if (arrA.length !== arrB.length) return false
 
@@ -10,13 +7,7 @@ export const areEqualArrays = <A extends any[], B extends any[]>(
   return true
 }
 
-export const areEqualObjects = <
-  A extends Record<any, any>,
-  B extends Record<any, any>
->(
-  objA: A,
-  objB: B | A
-): boolean => {
+export const areEqualObjects = (objA: {}, objB: {}): boolean => {
   if (objA === objB) return true
   const keysA = Object.keys(objA)
   if (keysA.length !== Object.keys(objB).length) return false
@@ -27,13 +18,7 @@ export const areEqualObjects = <
   return true
 }
 
-export const areEqual = <
-  A extends Record<any, any> | any[],
-  B extends Record<any, any> | any[]
->(
-  objA: A,
-  objB: B | A
-): boolean =>
+export const areEqual = (objA: {} | any[], objB: {} | any[]): boolean =>
   // @ts-ignore
   (Array.isArray(objA) === true ? areEqualArrays : areEqualObjects)(objA, objB)
 
