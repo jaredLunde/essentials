@@ -21,7 +21,7 @@ expect.extend({
 })
 
 // eslint-disable-next-line
-it('works', (done) => {
+it('works', done => {
   const then = now()
   requestTimeout((): void => {
     expect(now() - then).toBeNear(200)
@@ -30,7 +30,7 @@ it('works', (done) => {
 })
 
 // eslint-disable-next-line
-it('cancels', (done) => {
+it('cancels', done => {
   const callback = jest.fn(() => {})
   const handle = requestTimeout(callback, 200)
   clearRequestTimeout(handle)

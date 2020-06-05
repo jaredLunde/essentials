@@ -3,10 +3,15 @@
   "exclude": ["src/**/*.test.ts", "src/**/test.ts"],
   "compilerOptions": {
     "target": "es5",
-    "lib": ["esnext" /*, "dom", "dom.iterable"*/],
+    "lib": ["esnext"],
     "moduleResolution": "node",
+    "strictNullChecks": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noFallthroughCasesInSwitch": true,
+    "noEmitOnError": true
   }
 }

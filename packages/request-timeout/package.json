@@ -1,6 +1,6 @@
 {
   "name": "@essentials/request-timeout",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "homepage": "https://github.com/jaredLunde/essentials/tree/master/packages/request-timeout#readme",
   "repository": "github:jaredLunde/essentials",
   "bugs": "https://github.com/jaredLunde/essentials/issues",
@@ -8,33 +8,52 @@
   "license": "MIT",
   "description": "A setTimeout() function that uses requestAnimationFrame() in the background for ticks",
   "keywords": [
-    "request timeout"
+    "request timeout",
+    "set timeout",
+    "raf timeout"
   ],
-  "main": "dist/cjs/index.js",
-  "module": "dist/es/index.js",
+  "main": "dist/main/index.js",
+  "module": "dist/module/index.js",
+  "unpkg": "dist/umd/request-timeout.js",
+  "source": "src/index.ts",
+  "types": "types/index.d.ts",
   "files": [
-    "/dist"
+    "/dist",
+    "/src",
+    "/types"
   ],
+  "exports": {
+    ".": {
+      "browser": "./dist/module/index.js",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/main/index.js",
+      "umd": "./dist/umd/request-timeout.js",
+      "source": "./src/index.ts",
+      "types": "./types/index.d.ts",
+      "default": "./dist/main/index.js"
+    },
+    "./package.json": "./package.json",
+    "./": "./"
+  },
   "sideEffects": false,
   "scripts": {
-    "build": "npm run build:cjs && npm run build:es && npm run build:types",
-    "build:cjs": "babel src -d dist/cjs -x .ts --ignore \"**/*.test.ts\",\"**/test.ts\" --delete-dir-on-start",
-    "build:es": "babel src -d dist/es -x .ts --env-name es --ignore \"**/*.test.ts\",\"**/test.ts\" --delete-dir-on-start",
-    "build:types": "tsc -p tsconfig.json -d --outDir dist/es --emitDeclarationOnly && mkdir -p dist/cjs && cp -R dist/es/**.d.ts dist/cjs && rimraf dist/**/*.test.d.ts",
-    "check-types": "tsc --noEmit -p tsconfig.json",
-    "format": "prettier --write \"**/*.{ts,js,md,yml,json,babelrc,eslintrc,prettierrc}\"",
+    "build": "lundle build",
+    "check-types": "lundle check-types",
+    "dev": "lundle build -f module,cjs -w",
+    "format": "prettier --write \"{,!(node_modules|dist|coverage)/**/}*.{ts,js,md,yml,json}\"",
     "lint": "eslint . --ext .ts",
     "prepublishOnly": "npm run lint && npm run test && npm run build && npm run format",
     "test": "jest",
-    "validate": "npm run check-types && npm run lint && npm run test -- --coverage"
+    "validate": "lundle check-types && npm run lint && jest --coverage"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run build:types"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
     "**/*.{ts,js}": [
+      "lundle build -f types",
       "eslint",
       "prettier --write"
     ],
@@ -42,26 +61,58 @@
       "prettier --write"
     ]
   },
+  "eslintConfig": {
+    "extends": [
+      "lunde"
+    ]
+  },
+  "eslintIgnore": [
+    "node_modules",
+    "coverage",
+    "dist",
+    "test",
+    "*.config.js"
+  ],
+  "jest": {
+    "moduleDirectories": [
+      "node_modules",
+      "src",
+      "test"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/?(*.)test.ts"
+    ],
+    "collectCoverageFrom": [
+      "**/src/**/*.ts"
+    ],
+    "setupFilesAfterEnv": [
+      "./test/setup.js"
+    ],
+    "snapshotResolver": "./test/resolve-snapshot.js",
+    "globals": {
+      "__DEV__": true
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "bracketSpacing": false
+  },
   "devDependencies": {
-    "@lunde/babel-preset-es": "latest",
     "@types/jest": "latest",
-    "@typescript-eslint/eslint-plugin": "latest",
-    "@typescript-eslint/parser": "latest",
-    "cross-env": "latest",
+    "babel-jest": "latest",
+    "babel-plugin-annotate-pure-calls": "latest",
     "eslint": "latest",
-    "eslint-import-resolver-jest": "latest",
-    "eslint-plugin-jest": "latest",
+    "eslint-config-lunde": "latest",
     "husky": "latest",
     "jest": "latest",
     "lint-staged": "latest",
-    "mock-raf": "^1.0.1",
+    "lundle": "latest",
     "prettier": "latest",
-    "rimraf": "^2.6.3",
-    "ts-jest": "latest",
     "typescript": "latest"
   },
   "dependencies": {
-    "@essentials/raf": "^1.1.2"
+    "@essentials/raf": "^1.2.0"
   },
   "peerDependencies": {}
 }
