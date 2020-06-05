@@ -2,10 +2,10 @@ export type Raf = (callback: (timestamp: number) => void) => number
 export type Caf = (handle: number) => void
 
 let u = 'undefined',
-  win = typeof window !== u ? window : ({} as any),
+  win = typeof window !== u ? window : {},
   p = typeof performance !== u ? performance : Date,
   now = () => p.now(),
-  af = 'AnimationFrame' as const,
+  af = 'AnimationFrame',
   Caf = 'cancel' + af,
   Raf = 'request' + af,
   raf: Raf = win[Raf] && win[Raf].bind(win),
@@ -18,7 +18,7 @@ if (!raf || !caf) {
       next = Math.max(lastTime + 1000 / 60, curr)
     return setTimeout(() => {
       callback((lastTime = next))
-    }, next - curr) as any
+    }, next - curr)
   }
   caf = (h) => clearTimeout(h)
 }
