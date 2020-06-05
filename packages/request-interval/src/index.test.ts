@@ -1,6 +1,6 @@
+import now from 'performance-now'
 import requestInterval, {clearRequestInterval} from './index'
 // @ts-ignore
-import now from 'performance-now'
 
 expect.extend({
   toBeNear(actual, expected, wiggleRoom = 40) {
@@ -21,7 +21,7 @@ expect.extend({
 })
 
 // eslint-disable-next-line
-it('works', done => {
+it('works', (done) => {
   let then = now(),
     iterations = 0
 
@@ -35,7 +35,7 @@ it('works', done => {
 })
 
 // eslint-disable-next-line
-it('cancels', done => {
+it('cancels', (done) => {
   const callback = jest.fn(() => {})
   const handle = requestInterval(callback, 200)
   setTimeout(() => {
