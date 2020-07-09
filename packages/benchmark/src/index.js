@@ -4,9 +4,7 @@ const now =
     ? require('performance-now')
     : performance.now.bind(performance)
 const chalk =
-  typeof window === 'undefined'
-    ? require('chalk').default
-    : require('chalk-console')
+  typeof window === 'undefined' ? require('chalk') : require('chalk-console')
 const prettyMs = require('pretty-ms')
 const prettyOps = x => {
   x = x > 1 ? Math.round(x) : x.toFixed(4)
